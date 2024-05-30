@@ -5,43 +5,19 @@
 </head>
 <body>
    <canvas id="webgl" width="500" height="500"></canvas>
+   <script src="./common.js"></script>
    <script>
-   function initShader (gl, VERTEX_SHADER_SOURCE, FRAGMENT_SHADER_SOURCE) {
-    const vertexShader = gl.createShader(gl.VERTEX_SHADER);
-
-    const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
-
-    gl.shaderSource(vertexShader, VERTEX_SHADER_SOURCE);
-    gl.shaderSource(fragmentShader, FRAGMENT_SHADER_SOURCE);
-
-    //编译着色器
-    gl.compileShader(vertexShader);
-    gl.compileShader(fragmentShader);
-
-    //创建程序对象
-    const program = gl.createProgram();
-
-    gl.attachShader(program, vertexShader);
-    gl.attachShader(program, fragmentShader);
-
-    gl.linkProgram(program);
-    gl.useProgram(program);
-
-    return program;
-}
-
-
     var canvas = document.getElementById('webgl');
     var gl = canvas.getContext('webgl');
     var vertexShader = `
         viod main {
-            gl_Position = vec4(0.0, 0.0, 0.0, 1.0);
+            gl_Position = vec4(0.5, 0.5, 0.0, 1.0);
             gl_PointSize = 10.0;
         }
     `
     var SliceShader = `
         void main() {
-            gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+            gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
         }
     `
       var program = initShader(gl, vertexShader, SliceShader);
