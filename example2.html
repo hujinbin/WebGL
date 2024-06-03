@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>着色器</title>
+    <title>缓冲区对象</title>
 </head>
 <body>
    <canvas id="webgl" width="500" height="500"></canvas>
@@ -9,6 +9,9 @@
    <script>
     var canvas = document.getElementById('webgl');
     var gl = canvas.getContext('webgl');
+
+    var buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
     var vertexShader = `
         viod main {
             gl_Position = vec4(0.5, 0.5, 0.0, 1.0);
@@ -21,7 +24,6 @@
         }
     `
       var program = initShader(gl, vertexShader, SliceShader);
-      gl.drawArrays(gl.POINTS, 0, 1);
    </script>
 </body>
 </html>
